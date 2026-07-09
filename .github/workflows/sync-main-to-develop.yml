@@ -1,0 +1,19 @@
+name: Sync main to develop
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    uses: ./.github/workflows/sync-base-to-develop.reusable.yml
+    with:
+      base_branch: main
+      target_branch: develop
+    secrets:
+      app_id: ${{ secrets.SYNC_DEVELOP_APP_ID }}
+      private_key: ${{ secrets.SYNC_DEVELOP_APP_PRIVATE_KEY }}
